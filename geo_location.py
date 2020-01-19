@@ -29,8 +29,9 @@ from homeassistant.helpers.typing import HomeAssistantType
 
 _LOGGER = logging.getLogger(__name__)
 
-ATTR_FLIGHT_NUMBER = "flightnumber"
+ATTR_FLIGHT_CODE = "flightnumber"
 ATTR_AIRCRAFT_REGISTRATION = "aircraft_registration"
+ATTR_AIRCRAFT_TYPE = "aircraft_type"
 ATTR_ARRIVAL_AIRPORT = "arrival_airport"
 ATTR_DEPARTURE_AIRPORT = "departure_airport"
 ATTR_HEIGHT = "height"
@@ -52,7 +53,6 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_LONGITUDE): cv.longitude,
         vol.Optional(CONF_URL): cv.url,
         vol.Optional(CONF_RADIUS, default=DEFAULT_RADIUS_IN_KM): vol.Coerce(float),
-
     }
 )
 
@@ -90,13 +90,7 @@ class FlightAirMapFeedEntityManager:
     """Feed Entity Manager for Flight Air Map GeoJSON feed."""
 
     def __init__(
-        self,
-        hass,
-        async_add_entities,
-        scan_interval,
-        coordinates,
-        url,
-        radius_in_km,
+        self, hass, async_add_entities, scan_interval, coordinates, url, radius_in_km,
     ):
         """Initialize the Feed Entity Manager."""
         self._hass = hass
@@ -171,11 +165,12 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._longitude = None
         self._publication_date = None
         self._location = None
-        self._aircraft_registration = None;
-        self._height = None;
-        self._departure_airport = None;
-        self._arrrival_airport = None;
-        self._flight_id = None;
+        self._aircraft_registration = None
+        self._aircraft_type = None
+        self._height = None
+        self._departure_airport = None
+        self._arrival_airport = None
+        self._flight_id = None
         self._remove_signal_delete = None
         self._remove_signal_update = None
 
@@ -266,12 +261,11 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         """Return the device state attributes."""
         attributes = {}
         for key, value in (
-            (ATTR_FLIGHT_CODE, self._flight_id),
+            (ATTR_FLIGHT_CODE, self._flight_code),
             (ATTR_AIRCRAFT_REGISTRATION, self._aircraft_registration),
             (ATTR_AIRCRAFT_TYPE, self._aircraft_type),
             (ATTR_DEPARTURE_AIRPORT, self._departure_airport),
             (ATTR_ARRIVAL_AIRPORT, self._arrival_airport),
-            (ATTR_ID, self._id),
         ):
             if value or isinstance(value, bool):
                 attributes[key] = value
