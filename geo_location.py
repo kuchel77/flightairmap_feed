@@ -34,8 +34,9 @@ ATTR_AIRCRAFT_REGISTRATION = "aircraft_registration"
 ATTR_AIRCRAFT_TYPE = "aircraft_type"
 ATTR_ARRIVAL_AIRPORT = "arrival_airport"
 ATTR_DEPARTURE_AIRPORT = "departure_airport"
-ATTR_HEIGHT = "height"
-ATTR_PLANE_TYPE = "plane_type"
+ATTR_HEADING = "heading"
+ATTR_SQUAWK = "squawk"
+ATTR_ALTITUDE = "altitude"
 
 DEFAULT_RADIUS_IN_KM = 2000.0
 DEFAULT_UNIT_OF_MEASUREMENT = "km"
@@ -167,10 +168,11 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._location = None
         self._aircraft_registration = None
         self._aircraft_type = None
-        self._height = None
+        self._altitude = None
         self._departure_airport = None
         self._arrival_airport = None
-        self._flight_id = None
+        self._heading = None
+        self._squawk = None
         self._remove_signal_delete = None
         self._remove_signal_update = None
 
@@ -220,6 +222,13 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._distance = feed_entry.distance_to_home
         self._latitude = feed_entry.coordinates[0]
         self._longitude = feed_entry.coordinates[1]
+        self._aircraft_registration = feed_entry.aircraft_registration
+        self._altitude = feed_entry.altitude
+        self._squawk = feed_entry.squawk
+        self._heading = feed_entry.heading
+        self._aircraft_type = feed_entry.aircraft_type
+        self._arrival_airport = feed_entry.arrival_airport
+        self._departure_airport = feed_entry.departure_airport
 
     @property
     def icon(self):
@@ -266,6 +275,9 @@ class FlightAirMapLocationEvent(GeolocationEvent):
             (ATTR_AIRCRAFT_TYPE, self._aircraft_type),
             (ATTR_DEPARTURE_AIRPORT, self._departure_airport),
             (ATTR_ARRIVAL_AIRPORT, self._arrival_airport),
+            (ATTR_HEADING, self._heading),
+            (ATTR_SQUAWK, self._squawk),
+            (ATTR_ALTITUDE, self._altitude),
         ):
             if value or isinstance(value, bool):
                 attributes[key] = value
