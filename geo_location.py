@@ -31,6 +31,7 @@ _LOGGER = logging.getLogger(__name__)
 
 ATTR_FLIGHT_CODE = "flightnumber"
 ATTR_AIRCRAFT_ICAO = "aircraft_icao"
+ATTR_AIRCRAFT_ICAO = "aircraft_registration"
 ATTR_AIRCRAFT_TYPE = "aircraft_type"
 ATTR_ARRIVAL_AIRPORT = "arrival_airport"
 ATTR_DEPARTURE_AIRPORT = "departure_airport"
@@ -166,6 +167,7 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._longitude = None
         self._publication_date = None
         self._location = None
+        self._aircraft_registration = None
         self._aircraft_icao = None
         self._aircraft_type = None
         self._altitude = None
@@ -223,6 +225,7 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._latitude = feed_entry.coordinates[0]
         self._longitude = feed_entry.coordinates[1]
         self._aircraft_icao = feed_entry.aircraft_icao
+        self._aircraft_registration = feed_entry.aircraft_registration
         self._altitude = feed_entry.altitude
         self._squawk = feed_entry.squawk
         self._heading = feed_entry.heading
@@ -271,6 +274,7 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         attributes = {}
         for key, value in (
             (ATTR_FLIGHT_CODE, self._flight_code),
+            (ATTR_AIRCRAFT_REGISTRATION, self._aircraft_registration),
             (ATTR_AIRCRAFT_ICAO, self._aircraft_icao),
             (ATTR_AIRCRAFT_TYPE, self._aircraft_type),
             (ATTR_DEPARTURE_AIRPORT, self._departure_airport),
