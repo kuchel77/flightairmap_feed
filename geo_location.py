@@ -224,7 +224,6 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._distance = feed_entry.distance_to_home
         self._latitude = feed_entry.coordinates[0]
         self._longitude = feed_entry.coordinates[1]
-        self._aircraft_icao = feed_entry.aircraft_icao
         self._aircraft_registration = feed_entry.aircraft_registration
         self._altitude = feed_entry.altitude
         self._squawk = feed_entry.squawk
@@ -275,7 +274,6 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         for key, value in (
             (ATTR_FLIGHT_CODE, self._flight_code),
             (ATTR_AIRCRAFT_REGISTRATION, self._aircraft_registration),
-            (ATTR_AIRCRAFT_ICAO, self._aircraft_icao),
             (ATTR_AIRCRAFT_TYPE, self._aircraft_type),
             (ATTR_DEPARTURE_AIRPORT, self._departure_airport),
             (ATTR_ARRIVAL_AIRPORT, self._arrival_airport),
