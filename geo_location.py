@@ -31,7 +31,7 @@ _LOGGER = logging.getLogger(__name__)
 
 ATTR_FLIGHT_CODE = "flightnumber"
 ATTR_AIRCRAFT_ICAO = "aircraft_icao"
-ATTR_AIRCRAFT_ICAO = "aircraft_registration"
+ATTR_AIRCRAFT_REGISTRATION = "aircraft_registration"
 ATTR_AIRCRAFT_TYPE = "aircraft_type"
 ATTR_ARRIVAL_AIRPORT = "arrival_airport"
 ATTR_DEPARTURE_AIRPORT = "departure_airport"
