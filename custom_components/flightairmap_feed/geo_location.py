@@ -2,14 +2,12 @@
 from datetime import timedelta
 import logging
 from typing import Optional
+import voluptuous as vol
 
 from aio_geojson_flightairmap import FlightAirMapFeedManager
-import voluptuous as vol
 
 from homeassistant.components.geo_location import PLATFORM_SCHEMA, GeolocationEvent
 from homeassistant.const import (
-    ATTR_ATTRIBUTION,
-    ATTR_LOCATION,
     CONF_LATITUDE,
     CONF_LONGITUDE,
     CONF_URL,
@@ -178,6 +176,7 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._squawk = None
         self._remove_signal_delete = None
         self._remove_signal_update = None
+        self._name = None
 
     async def async_added_to_hass(self):
         """Call when entity is added to hass."""
@@ -232,6 +231,7 @@ class FlightAirMapLocationEvent(GeolocationEvent):
         self._aircraft_type = feed_entry.aircraft_type
         self._arrival_airport = feed_entry.arrival_airport
         self._departure_airport = feed_entry.departure_airport
+        self._flight_code = feed_entry.title
 
     @property
     def icon(self):
