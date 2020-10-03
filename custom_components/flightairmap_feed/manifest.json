@@ -2,7 +2,7 @@
   "domain": "flightairmap_feed",
   "name": "FlightAirMap Feed",
   "documentation": "https://www.home-assistant.io/integrations/flightairmap_feed",
-  "requirements": ["aio_geojson_flightairmap>=0.4.16"],
+  "requirements": ["aio_geojson_flightairmap>=0.4.18"],
   "dependencies": [],
   "codeowners": ["@kuchel77"]
 }
