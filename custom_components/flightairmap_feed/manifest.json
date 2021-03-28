@@ -4,5 +4,6 @@
   "documentation": "https://www.home-assistant.io/integrations/flightairmap_feed",
   "requirements": ["aio_geojson_flightairmap>=0.4.18"],
   "dependencies": [],
-  "codeowners": ["@kuchel77"]
+  "codeowners": ["@kuchel77"],
+  "version": "0.2
 }
