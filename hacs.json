@@ -1,0 +1,7 @@
+{
+    "name": "FlightAirMap Feed",
+    "country": ["AU"],
+    "render_readme": true,
+    "domains": ["geolocation"],
+    "version": 0.3
+}

@@ -5,5 +5,5 @@
   "requirements": ["aio_geojson_flightairmap>=0.4.18"],
   "dependencies": [],
   "codeowners": ["@kuchel77"],
-  "version": "0.2"
+  "version": "0.3"
 }
